@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #e9f1fa;
 }
 
 #main {
@@ -26,7 +27,7 @@ body {
 .search {
   color: white;
   border: 1px solid transparent;
-  background-color: #3959a8;
+  background-color: #a7d6fa;
   border-radius: 3px;
   font-size: 20px;
   cursor: pointer;
@@ -35,7 +36,7 @@ body {
 }
 
 .search:hover {
-  color: #3959a8;
+  color: #a7d6fa;
   background-color: white;
 }
 
@@ -87,7 +88,7 @@ ul {
 #current {
   color: white;
   border: 1px solid transparent;
-  background-color: #f5c542;
+  background-color: #a7d6fa;
   border-radius: 3px;
   font-size: 20px;
   cursor: pointer;
@@ -96,6 +97,26 @@ ul {
 }
 
 #current:hover {
-  color: #f5c542;
+  color: #a7d6fa;
   background-color: white;
+}
+
+#git {
+  display: block;
+  margin: 30px 410px;
+}
+
+#description {
+  font-weight: 600;
+}
+
+.active {
+  color: black;
+  cursor: default;
+  text-decoration: none !important;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: black;
 }

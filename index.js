@@ -1,5 +1,7 @@
 import "./styles.css";
 
+navigator.geolocation.getCurrentPosition(pageLoad);
+
 //Format form and heading
 function cityName(intro) {
   intro.preventDefault();
@@ -9,10 +11,11 @@ function cityName(intro) {
   tempUpdate(city);
 }
 
+//Change city name to match entered city
 function tempUpdate(city) {
   let citySearched = document.querySelector("#city").value;
   let apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
-  let cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearched},au&units=imperial&appid=${apiKey}`;
+  let cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${citySearched}&units=imperial&appid=${apiKey}`;
   axios.get(cityUrl).then(currentTemp);
 }
 
@@ -30,7 +33,7 @@ function formatDate(date) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let day = days[now.getDay()];
@@ -51,25 +54,9 @@ let time = document.querySelector("#time");
 let currentDate = new Date();
 time.innerHTML = formatDate(currentDate);
 
-function ToF(event) {
-  event.preventDefault();
-  let currentTemp = document.querySelector("#temperature");
-  currentTemp.innerHTML = `35 `;
-}
-
-let temp = document.querySelector("#tempChangeF");
-temp.addEventListener("click", ToF);
-
-function ToC(event) {
-  event.preventDefault();
-  let currentTemp = document.querySelector("#temperature");
-  currentTemp.innerHTML = `1 `;
-}
-
-let tempC = document.querySelector("#tempChangeC");
-tempC.addEventListener("click", ToC);
-
-function location() {
+//Finds current location with lat and long
+function location(intro) {
+  intro.preventDefault();
   function findLocation(position) {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
@@ -86,17 +73,21 @@ function location() {
   navigator.geolocation.getCurrentPosition(findLocation);
 }
 
+//Updates weather for city
 document.querySelector("#current").addEventListener("click", location);
+document.addEventListener("DOMContentLoaded", function () {
+  location();
+});
 
 function currentTemp(response) {
   let name = response.data.name;
   let country = response.data.sys.country;
-  let temp = Math.round(response.data.main.temp);
+  fTemp = Math.round(response.data.main.temp);
   let humid = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let descrip = response.data.weather[0].main;
   let weather = document.querySelector("#temperature");
-  weather.innerHTML = temp;
+  weather.innerHTML = fTemp;
   let cityName = document.querySelector("#heading");
   cityName.innerHTML = `${name}, ${country}`;
   let windSpeed = document.querySelector("#wind");
@@ -105,4 +96,51 @@ function currentTemp(response) {
   humidPercent.innerHTML = "Humidity: " + humid + "%";
   let description = document.querySelector("#description");
   description.innerHTML = descrip;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+}
+
+function ToF(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#temperature");
+  temp.classList.add("active");
+  tempC.classList.remove("active");
+  currentTemp.innerHTML = fTemp;
+}
+
+function ToC(event) {
+  event.preventDefault();
+  let currentTemp = document.querySelector("#temperature");
+  tempC.classList.add("active");
+  temp.classList.remove("active");
+  let celciusTemp = ((fTemp - 32) * 5) / 9;
+  currentTemp.innerHTML = Math.round(celciusTemp);
+}
+
+let fTemp = null;
+
+let temp = document.querySelector("#tempChangeF");
+temp.addEventListener("click", ToF);
+
+let tempC = document.querySelector("#tempChangeC");
+tempC.addEventListener("click", ToC);
+
+function pageLoad() {
+  function findLocation(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    let apiKey = "0efb4fc16a9ed98dc0b3aafd8491d6ad";
+    let url =
+      "https://api.openweathermap.org/data/2.5/weather?lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&units=imperial&appid=" +
+      apiKey;
+    axios.get(url).then(currentTemp);
+  }
+  navigator.geolocation.getCurrentPosition(findLocation);
 }
