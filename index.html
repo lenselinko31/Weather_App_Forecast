@@ -13,14 +13,14 @@
   <body>
       <div class="container">
         <div class="app">
-      <div class="card" style="width: 70rem;" id = "main">    
+      <div class="card" style="width: 40rem;" id = "main">    
       <div class="card-body">
     <form >
       <div class = "row row-cols-lg-auto g-3 align-items-center">
-        <div class="col-6">
+        <div class="col-9">
       <input id="city" class="form-control" placeholder="Enter City Name" />
     </div>
-    <div class="col-6">
+    <div class="col-3">
        <button class = "search" class="btn btn-primary">Search</button> 
       </div>
       <span> 
@@ -30,9 +30,9 @@
   </br>
         <h1 class="card-title" id="heading"></h1>
         <div class="card-subtitle" id="time"> </div>        
-        <div id = "description">Sunny </div>
+        <div id = "description"></div>
   <div class = "row">
-        <div class="col-4"> <div id = emoji> <image src = "http://openweathermap.org/img/wn/01d@2x.png" id = "icon" />
+        <div class="col-7"> <div id = emoji> <image src = "http://openweathermap.org/img/wn/01d@2x.png" id = "icon" />
           <span class = "weather" id = "temperature"> </span>   
           <span class = "temp" >  <a href="#" class="card-link" class="active" id="tempChangeF">°F</a> |<a href="#" class="card-link" id="tempChangeC">°C</a> 
           </span> 
@@ -40,68 +40,22 @@
       </div>
           <div class = "col-3">   
           <ul> 
-          <li id = "humid">
-              Humidity: 57%
+          <li id = "humid">    
             </li>
-            <li id = "wind">
-                Wind: 6 m/h
+            <li id = "wind">      
               </li>
             </div>
         </div>
       </div>
-        <div class="row g-5">  
-          <div class="col">
-              <div class="card border-dark" style="max-width: 14rem;"> 
-                <div class="card-body">
-                  <h5 class="card-title">Tomorrow</h5>
-                  <p class="card-text">☀️</p>
-                  <p class="card-text">36°F<span class = "low"> /32°F </span></p>
-                </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card border-dark"> 
-                <div class="card-body" style="max-width: 14rem;">
-                  <h5 class="card-title">Monday</h5>
-                  <p class="card-text">⛅</p>
-                  <p class="card-text">40°F<span class = "low"> /38°F </span></p>
-                </div> 
-                </div>  
-              </div>
-              <div class="col">
-                <div class="card border-dark" style="max-width: 14rem;">  
-                <div class="card-body">
-                  <h5 class="card-title">Tuesday</h5>
-                  <p class="card-text">❄️</p>
-                  <p class="card-text">34°F<span class = "low"> /29°F </span></p>
-                </div>
-                </div>
-              </div>
-                <div class="col">
-                <div class="card border-dark"> 
-                <div class="card-body" style="max-width: 14rem;">
-                  <h5 class="card-title">Wednesday</h5>
-                  <p class="card-text">❄️</p>
-                  <p class="card-text">30°F<span class = "low"> /26°F </span></p>
-                </div>   
-                </div>   
-                </div>
-                <div class="col">
-                <div class="card border-dark"> 
-                  <div class="card-body" style="max-width: 14rem;">
-                    <h5 class="card-title">Thursday</h5>
-                    <p class="card-text">⛅</p>
-                    <p class="card-text">38°F<span class = "low"> /35°F </span></p>
-                </div>
-                </div>
-        </div>
-      </div>
-        </div>
+        <div id = "forecast" > </div>
       </div>
       </div>
       </div>
     </div>
-    <a href = https://github.com/lenselinko31/Weather_App target="_blank" id = "git"> GitHub </a>
+    <footer id = "git">
+    <a href = https://github.com/lenselinko31/Weather_App target="_blank"> Open-Sourced Code</a> 
+    <span class = "name"> by Olivia Lenselink </span>
+    <footer>
     <script src="src/index.js"></script>
   </body>
 </html>
