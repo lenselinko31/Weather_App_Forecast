@@ -1,4 +1,4 @@
-import "./styles.css";
+//import "./styles.css";
 
 navigator.geolocation.getCurrentPosition(pageLoad);
 
