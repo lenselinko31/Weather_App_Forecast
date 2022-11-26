@@ -19,10 +19,6 @@ function tempUpdate(city) {
   axios.get(cityUrl).then(currentTemp);
 }
 
-import "./styles.css";
-
-navigator.geolocation.getCurrentPosition(pageLoad);
-
 //Format form and heading
 function cityName(intro) {
   intro.preventDefault();
@@ -78,7 +74,7 @@ let currentDate = new Date();
 time.innerHTML = formatDate(currentDate);
 
 //Finds current location with lat and long
-function location(intro) {
+function handleLocation(intro) {
   intro.preventDefault();
   function findLocation(position) {
     let lat = position.coords.latitude;
@@ -98,9 +94,9 @@ function location(intro) {
   navigator.geolocation.getCurrentPosition(findLocation);
 }
 
-document.querySelector("#current").addEventListener("click", location);
+document.querySelector("#current").addEventListener("click", handleLocation);
 document.addEventListener("DOMContentLoaded", function () {
-  location();
+  handleLocation({ preventDefault: () => {} });
 });
 
 function forecastWeekDay(timestamp) {
